@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Formulario para editar:</h1>
+    {% for empleado in empleados %}
+        <form method="post" action="/update" enctype="multipart/form-data">
+            <h3>ID:</h3>
+            <input type="text" value="{{ empleado[0]}}" name="txtID" id="txtID">
+            <br>
+
+            <h3>Nombre:</h3>
+            <input type="text" value="{{ empleado[1]}}" name="txtNombre" id="txtNombre">
+            <br>
+    
+            <h3>Correo:</h3>
+            <input type="text" value="{{ empleado[2]}}" name="txtCorreo" id="txtCorreo">
+            <br>
+    
+            <h3>Foto:</h3>
+            {{ empleado[3]}}
+            <input type="file" name="txtFoto" id="txtFoto">
+            <br>
+            <br>
+            <input type="submit" value="Modificar">
+        </form>
+
+    {% endfor %}
+</body>
+</html>
