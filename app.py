@@ -82,6 +82,10 @@ def edit(id):
 # Route update users info
 @app.route('/update', methods=['POST'])
 def update():
+    """
+    We're updating the database with the new values of the form
+    :return: the redirect function, which is redirecting the user to the root page.
+    """
     
     _nombre=request.form['txtNombre']
     _correo=request.form['txtCorreo']
