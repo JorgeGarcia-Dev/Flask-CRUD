@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static', filename='normalize.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <title>Flask - CRUD</title>
+</head>
+<body>
+    <nav class="nav">
+        <div class="nav-left">
+            <a class="nav-title" href="{{url_for('index')}}">Jorge Garcia Dev</a>
+        </div>
+        <div class="nav-right">
+            <a class="nav-menu" href="{{url_for('index')}}">Index</a>
+            <a class="nav-menu" href="{{url_for('create')}}">Create</a>
+        </div>
+    </nav>
+
+    <section class="title">
+        <div class="title-div">
+            <h1 class="title-full">Project - CRUD</h1>
+            <p class="about-title">Develop with: Flask, MySQL, HTML & CSS.</p>
+            {% block content %}
+            {% endblock %}
+        </div>
+    </section>
+
+</body>
+</html>

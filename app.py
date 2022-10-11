@@ -1,11 +1,16 @@
 from flask import Flask, render_template, request, redirect
 from datetime import datetime
+from decouple import config
 
 import pymysql
+import os
 
 app=Flask(__name__)
 PORT = 5000
 DEBUG = False
+
+CARPETA = os.path.join('uploads')
+app.config['CARPETA']=CARPETA
 
 @app.errorhandler(404)
 def not_found(error):
@@ -18,9 +23,9 @@ def connection():
     :return: The connection to the database.
     """
     h = 'localhost'
-    d = 'sistema' 
-    u = 'root'
-    p = 'SQL223010'
+    d = config('DB_MYSQL')
+    u = config('USER_MYSQL')
+    p = config('PASSWORD_MYSQL')
     conn = pymysql.connect(host=h, user=u, password=p, database=d)
     return conn
 
@@ -53,6 +58,10 @@ def destroy(id):
     """
     conn = connection()
     cursor = conn.cursor()
+    
+    cursor.execute("SELECT foto FROM empleados WHERE id=%s", id)
+    fila = cursor.fetchall()
+    os.remove(os.path.join(app.config['CARPETA'], fila[0][0]))
     
     cursor.execute("DELETE FROM empleados WHERE id=%s", (id))
     conn.commit()
@@ -100,6 +109,21 @@ def update():
     
     conn = connection()
     cursor = conn.cursor()
+    
+    now=datetime.now()
+    tiempo=now.strftime("%Y%H%M%S")
+    
+    if _foto.filename!='':
+        
+        nuevoNombreFoto=tiempo+_foto.filename
+        _foto.save("uploads/"+nuevoNombreFoto)
+        
+        cursor.execute("SELECT foto FROM empleados WHERE id=%s", id)
+        fila = cursor.fetchall()
+        
+        os.remove(os.path.join(app.config['CARPETA'], fila[0][0]))
+        cursor.execute("UPDATE empleados SET foto=%s WHERE id=%s", (nuevoNombreFoto, id))
+        conn.commit()
     
     cursor.execute(sql, datos)
     
