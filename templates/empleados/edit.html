@@ -17,11 +17,12 @@
             <br>
     
             <h3>Foto:</h3>
-            {{ empleado[3]}}
+            <img class="img-thumbnail" src="{{ url_for('uploads', nombreFoto=empleado[3]) }}" alt="foto de perfil">
+            <br>
             <input type="file" name="txtFoto" id="txtFoto">
             <br>
             <br>
-            <input type="submit" value="Modificar">
+            <input class="btn-modificar" type="submit" value="Modificar">
         </form>
 
     {% endfor %}

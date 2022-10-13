@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, send_from_directory, url_for, flash
 from datetime import datetime
 from decouple import config
 
@@ -9,8 +9,14 @@ app=Flask(__name__)
 PORT = 5000
 DEBUG = False
 
+app.secret_key="empleadosCRUD"
+
 CARPETA = os.path.join('uploads')
 app.config['CARPETA']=CARPETA
+
+@app.route('/uploads/<nombreFoto>')
+def uploads(nombreFoto):
+    return send_from_directory(app.config['CARPETA'], nombreFoto)
 
 @app.errorhandler(404)
 def not_found(error):
@@ -153,6 +159,10 @@ def storage():
     
     _foto=request.files['txtFoto']
     
+    if _nombre=='' or _correo=='' or _foto=='':
+        flash('¡¡ Recuerda llenar todos los campos !!')
+        return redirect(url_for('create'))
+
     now=datetime.now()
     tiempo=now.strftime("%Y%H%M%S")
     

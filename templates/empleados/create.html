@@ -1,6 +1,22 @@
 {% extends 'base.html' %}
 {% block content %}
 
+{% with messages=get_flashed_messages() %}
+
+    {% if messages %}
+
+        <div class="alert" role="alert">
+            {% for message in messages %}
+
+                {{ message }}
+
+            {% endfor %}
+        </div>
+
+    {% endif %}
+
+{% endwith %}
+
     <form method="post" action="/store" enctype="multipart/form-data">
         <h3>Nombre:</h3>
         <input type="text" name="txtNombre" id="txtNombre">
@@ -14,7 +30,8 @@
         <input type="file" name="txtFoto" id="txtFoto">
         <br>
         <br>
-        <input type="submit" value="Agregar">
+        <input class="btn-agregar" type="submit" value="Agregar">
+        <td> <a class="btn-regresar" href="{{url_for('index')}}"">Regresar</a> 
     </form>
 
 {% endblock %}

@@ -32,7 +32,7 @@ html {
 }
 
 .nav-title {
-    font-size: 15px;
+    font-size: 20px;
     color: #FFFFFF;
     text-decoration: none;
     text-transform: uppercase;
@@ -109,4 +109,84 @@ tbody tr:nth-child(odd) {
 
 tbody tr:nth-child(even) {
     background-color: #d9d9d7;
-  }
+}
+
+.img-thumbnail {
+    width: 100px;
+    border-radius: 10px;
+    border: solid black 2px;
+}
+
+/* Boton Nuevo Empleado */
+.btn-container {
+    display: flex;
+    justify-content: center;
+}
+
+.btn-nuevo-empleado {
+    background-color: #000000;
+    color: #ffeb3b;
+    border-radius: 10px;
+    padding: 10px 20px;
+    text-decoration: none;
+}
+
+/* Botones Editar | Eliminar */
+.btn-editar {
+    background-color: yellow;
+    color: black;
+    padding: 5px 10px;
+    text-decoration: none;
+    border-radius: 5px;
+    border: none;
+}
+
+.btn-eliminar {
+    background-color: red;
+    color: white;
+    padding: 5px 10px;
+    text-decoration: none;
+    border-radius: 5px;
+    border: none;
+}
+
+/* Botón Agregar */
+.btn-agregar {
+    background-color: green;
+    color: white;
+    padding: 5px 10px;
+    text-decoration: none;
+    border-radius: 5px;
+    border: none;
+}
+
+.btn-regresar {
+    background-color: blue;
+    color: white;
+    padding: 5px 10px;
+    margin-left: 10px;
+    text-decoration: none;
+    border-radius: 5px;
+    border: none;
+}
+
+.btn-modificar {
+    background-color: orange;
+    color: white;
+    padding: 5px 10px;
+    text-decoration: none;
+    border-radius: 5px;
+    border: none;
+}
+
+.alert {
+    text-align: center;
+    font-weight: bold;
+    text-transform: uppercase;
+    background-color: red;
+    color: #000000;
+    padding: 10px;
+    text-decoration: none;
+    border-radius: 5px;
+    border: none;
+}

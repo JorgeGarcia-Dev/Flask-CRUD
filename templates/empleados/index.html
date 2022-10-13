@@ -4,6 +4,9 @@
     <section class="section-table">
         <div class="table-full">
             <table>
+                <div class="btn-container">
+                    <a class="btn-nuevo-empleado" href="{{ url_for('create') }}">Registrar nuevo empleado:</a>
+                </div>
                 <thead>
                     <tr>
                         <th>#</th>
@@ -17,10 +20,14 @@
                     {% for empleado in empleados %}
                     <tr>
                         <td>{{ empleado[0] }}</td>
-                        <td>{{ empleado[3] }}</td>
+
+                        <td>
+                            <img class="img-thumbnail" src="uploads/{{ empleado[3] }}" alt="foto de perfil">
+                        </td>
+
                         <td>{{ empleado[1] }}</td>
                         <td>{{ empleado[2] }}</td>
-                        <td> <a href="/edit/{{empleado[0]}}">Editar</a> | <a href="/destroy/{{empleado[0]}}">Eliminar</a> </td>
+                        <td> <a class="btn-editar" href="/edit/{{empleado[0]}}">Editar</a> | <a onclick="return confirm('¿En verdad deseas eliminar éste empleado?')" class="btn-eliminar" href="/destroy/{{empleado[0]}}">Eliminar</a> </td>
                     </tr>
                     {% endfor %}
                 </tbody>
