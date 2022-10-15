@@ -64,13 +64,14 @@ html {
     flex-direction: column;
     justify-content: stretch;
     padding: 20px 40px;
-    background-color: #ffeb3b;
+    background-color: #e9e9e7;
     border-radius: 20px;
     box-shadow:  20px 20px 60px #d6d6d6;
 }
 
 .title-full {
     text-align: center;
+    padding: 40px 0;
 }
 
 .about-title {
@@ -83,8 +84,8 @@ html {
 .section-table {
     display: flex;
     justify-content: center;
-    margin-left: 200px;
-    margin-right: 200px;
+    margin-left: auto;
+    margin-right: auto;
     border-radius: 20px;
 }
 
@@ -95,7 +96,7 @@ table {
 
 th {
     background-color: #000000;
-    color: #ffeb3b;
+    color: #FFFFFF;
 }
 
 th, td {
@@ -124,10 +125,11 @@ tbody tr:nth-child(even) {
 }
 
 .btn-nuevo-empleado {
-    background-color: #000000;
-    color: #ffeb3b;
+    background-color: green;
+    color: #ffffff;
     border-radius: 10px;
     padding: 10px 20px;
+    margin: 20px 0 0 0;
     text-decoration: none;
 }
 
