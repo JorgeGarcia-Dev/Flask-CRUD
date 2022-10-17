@@ -128,8 +128,17 @@ tbody tr:nth-child(even) {
 }
 
 .btn-nuevo-empleado {
-    background-color: green;
+    background-color: #8bc34a;
     color: #ffffff;
+    border-radius: 10px;
+    padding: 10px 20px;
+    margin: 20px 0 0 0;
+    text-decoration: none;
+}
+
+.btn-nuevo-empleado:hover {
+    background-color: #8bc34a;
+    color: #090909;
     border-radius: 10px;
     padding: 10px 20px;
     margin: 20px 0 0 0;
@@ -138,8 +147,17 @@ tbody tr:nth-child(even) {
 
 /* Botones Editar | Eliminar */
 .btn-editar {
-    background-color: yellow;
-    color: black;
+    background-color: #2196f3;
+    color: #ffffff;
+    padding: 5px 10px;
+    text-decoration: none;
+    border-radius: 5px;
+    border: none;
+}
+
+.btn-editar:hover {
+    background-color: #2196f3;
+    color: #090909;
     padding: 5px 10px;
     text-decoration: none;
     border-radius: 5px;
@@ -148,7 +166,16 @@ tbody tr:nth-child(even) {
 
 .btn-eliminar {
     background-color: red;
-    color: white;
+    color: #ffffff;
+    padding: 5px 10px;
+    text-decoration: none;
+    border-radius: 5px;
+    border: none;
+}
+
+.btn-eliminar:hover {
+    background-color: red;
+    color: #090909;
     padding: 5px 10px;
     text-decoration: none;
     border-radius: 5px;
@@ -157,17 +184,38 @@ tbody tr:nth-child(even) {
 
 /* Botón Agregar */
 .btn-agregar {
-    background-color: green;
-    color: white;
+    background-color: #8bc34a;
+    color: #ffffff;
     padding: 5px 10px;
+    text-decoration: none;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-agregar:hover {
+    background-color: #8bc34a;
+    color: #090909;
+    padding: 5px 10px;
+    text-decoration: none;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-regresar {
+    background-color: #2196f3;
+    color: #ffffff;
+    padding: 5px 10px;
+    margin-left: 10px;
     text-decoration: none;
     border-radius: 5px;
     border: none;
 }
 
-.btn-regresar {
-    background-color: blue;
-    color: white;
+.btn-regresar:hover {
+    background-color: #2196f3;
+    color: #090909;
     padding: 5px 10px;
     margin-left: 10px;
     text-decoration: none;
@@ -177,11 +225,22 @@ tbody tr:nth-child(even) {
 
 .btn-modificar {
     background-color: orange;
-    color: white;
+    color: #ffffff;
     padding: 5px 10px;
     text-decoration: none;
     border-radius: 5px;
     border: none;
+    cursor: pointer;
+}
+
+.btn-modificar:hover {
+    background-color: orange;
+    color: #090909;
+    padding: 5px 10px;
+    text-decoration: none;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
 }
 
 .alert {
@@ -206,4 +265,54 @@ tbody tr:nth-child(even) {
 
 .hide {
     visibility: hidden;
+}
+
+.footer {
+    padding: 40px 0;
+    background-color: #090909;
+    color: #FFFFFF;
+}
+
+.social-links {
+    margin-top: 20px;
+    margin-bottom: 40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.social-links a {
+    margin: 0 10px;
+}
+
+.social {
+    background-color: #FFFFFF;
+    border: solid 1px #FFFFFF;
+    box-shadow: 0 2px 3px #DDDDDD;
+    border-radius: 15px;
+    height: 40px;
+}
+
+.made-width {
+    padding: 0 30px;
+    color: #58AAE0;
+    display: flex;
+    justify-content: center;
+}
+
+.sub {
+    text-align: center;
+}
+
+.sub-2 {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.love {
+    color: #ffffff;
+}
+
+span {
+    color: #ffeb3b;
 }
