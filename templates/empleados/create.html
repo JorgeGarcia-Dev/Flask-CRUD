@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 {% block content %}
 
+<h1 class="title-full">Registrar nuevo empleado:</h1>
+
 {% with messages=get_flashed_messages() %}
 
     {% if messages %}
@@ -19,11 +21,11 @@
 
     <form method="post" action="/store" enctype="multipart/form-data">
         <h3>Nombre:</h3>
-        <input type="text" name="txtNombre" id="txtNombre">
+        <input class="form-1" type="text" name="txtNombre" id="txtNombre">
         <br>
 
         <h3>Correo:</h3>
-        <input type="text" name="txtCorreo" id="txtCorreo">
+        <input class="form-1" type="text" name="txtCorreo" id="txtCorreo">
         <br>
 
         <h3>Foto:</h3>
