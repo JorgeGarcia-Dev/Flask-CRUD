@@ -1,9 +1,11 @@
-from flask import Flask, render_template, request, redirect, send_from_directory, url_for, flash
+from flask import Flask, render_template, request, redirect, send_from_directory, url_for, flash, g
 from datetime import datetime
 from decouple import config
+from flask.cli import with_appcontext
 
 import pymysql
 import os
+import click
 
 app=Flask(__name__)
 PORT = 5000
@@ -28,12 +30,40 @@ def connection():
     It connects to the database and returns the connection object
     :return: The connection to the database.
     """
-    h = 'localhost'
-    d = config('DB_MYSQL')
-    u = config('USER_MYSQL')
-    p = config('PASSWORD_MYSQL')
-    conn = pymysql.connect(host=h, user=u, password=p, database=d)
-    return conn
+    if 'db' not in g:
+        g.db = pymysql.connect(
+            host = 'localhost',
+            database = config('DB_MYSQL'),
+            user = config('USER_MYSQL'),
+            password = config('PASSWORD_MYSQL')
+        )
+        
+    return g.db
+
+# Init DB
+def close_db(e=None):
+    
+    db = g.pop('db', None)
+    
+    if db is not None:
+        db.close()
+
+def init_db():
+    
+    db = connection()
+
+    db.commit()
+
+@click.command('init-db')
+@with_appcontext
+
+def init_db_command():
+    init_db()
+    click.echo('Base de datos inicializada')
+    
+def init_app(app):
+    app.teardown_appcontext(close_db)
+    app.cli.add_command(init_db_command)
 
 # Route index.html
 @app.route('/')
