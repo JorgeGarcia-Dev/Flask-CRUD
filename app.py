@@ -1,17 +1,14 @@
-from flask import Flask, render_template, request, redirect, send_from_directory, url_for, flash, g
+from flask import Flask, render_template, request, redirect, send_from_directory, url_for, flash
 from datetime import datetime
-from decouple import config
-from flask.cli import with_appcontext
+from db import connection
 
-import pymysql
 import os
-import click
 
 app=Flask(__name__)
 PORT = 5000
 DEBUG = False
 
-app.secret_key="empleadosCRUD"
+app.secret_key=('SECRET_KEY')
 
 CARPETA = os.path.join('uploads')
 app.config['CARPETA']=CARPETA
@@ -24,47 +21,6 @@ def uploads(nombreFoto):
 def not_found(error):
     return "Not Found."
 
-# Database Connection
-def connection():
-    """
-    It connects to the database and returns the connection object
-    :return: The connection to the database.
-    """
-    if 'db' not in g:
-        g.db = pymysql.connect(
-            host = 'localhost',
-            database = config('DB_MYSQL'),
-            user = config('USER_MYSQL'),
-            password = config('PASSWORD_MYSQL')
-        )
-        
-    return g.db
-
-# Init DB
-def close_db(e=None):
-    
-    db = g.pop('db', None)
-    
-    if db is not None:
-        db.close()
-
-def init_db():
-    
-    db = connection()
-
-    db.commit()
-
-@click.command('init-db')
-@with_appcontext
-
-def init_db_command():
-    init_db()
-    click.echo('Base de datos inicializada')
-    
-def init_app(app):
-    app.teardown_appcontext(close_db)
-    app.cli.add_command(init_db_command)
-
 # Route index.html
 @app.route('/')
 def index():
@@ -73,14 +29,14 @@ def index():
     """
     
     sql = "SELECT * FROM empleados;"
-    conn = connection()
-    cursor = conn.cursor()
+    db = connection()
+    cursor = db.cursor()
     cursor.execute(sql)
     
     empleados=cursor.fetchall()
     print(empleados)
     
-    conn.commit()
+    db.commit()
     return render_template('empleados/index.html', empleados=empleados)
 
 # Route destroy/delete users
@@ -92,15 +48,15 @@ def destroy(id):
     :param id: The id of the employee to be deleted
     :return: the redirect function, which is redirecting to the root route.
     """
-    conn = connection()
-    cursor = conn.cursor()
+    db = connection()
+    cursor = db.cursor()
     
     cursor.execute("SELECT foto FROM empleados WHERE id=%s", id)
     fila = cursor.fetchall()
     os.remove(os.path.join(app.config['CARPETA'], fila[0][0]))
     
     cursor.execute("DELETE FROM empleados WHERE id=%s", (id))
-    conn.commit()
+    db.commit()
     return redirect('/')
 
 # Route edit users info
@@ -114,13 +70,13 @@ def edit(id):
     :return: The template edit.html is being returned.
     """
     
-    conn = connection()
-    cursor = conn.cursor()
+    db = connection()
+    cursor = db.cursor()
     
     cursor.execute("SELECT * FROM empleados WHERE id=%s", (id))
     
     empleados=cursor.fetchall()
-    conn.commit()
+    db.commit()
     
     return render_template('empleados/edit.html', empleados=empleados)
 
@@ -143,8 +99,8 @@ def update():
     
     datos=(_nombre, _correo, id)
     
-    conn = connection()
-    cursor = conn.cursor()
+    db = connection()
+    cursor = db.cursor()
     
     now=datetime.now()
     tiempo=now.strftime("%Y%H%M%S")
@@ -159,11 +115,11 @@ def update():
         
         os.remove(os.path.join(app.config['CARPETA'], fila[0][0]))
         cursor.execute("UPDATE empleados SET foto=%s WHERE id=%s", (nuevoNombreFoto, id))
-        conn.commit()
+        db.commit()
     
     cursor.execute(sql, datos)
     
-    conn.commit()
+    db.commit()
     
     return redirect('/')
 
@@ -204,11 +160,11 @@ def storage():
     
     datos=(_nombre, _correo, nuevoNombreFoto)
     
-    conn = connection()
-    cursor = conn.cursor()
+    db = connection()
+    cursor = db.cursor()
     cursor.execute(sql, datos)
-    conn.commit()
-    return render_template('empleados/index.html')
+    db.commit()
+    return render_template('empleados/confirmacion.html')
 
 if __name__ == '__main__':
     app.run(port=PORT,debug=True)

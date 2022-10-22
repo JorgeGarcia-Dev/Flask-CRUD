@@ -243,6 +243,30 @@ tbody tr:nth-child(even) {
     cursor: pointer;
 }
 
+.btn-inicio-nuevo {
+    display: block;
+    text-align: center;
+    background-color: #2196f3;
+    color: #ffffff;
+    padding:10px;
+    margin-left: 10px;
+    text-decoration: none;
+    border-radius: 5px;
+    border: none;
+}
+
+.btn-inicio-nuevo:hover {
+    display: block;
+    text-align: center;
+    background-color: #2196f3;
+    color: #000000;
+    padding: 10px;
+    margin-left: 10px;
+    text-decoration: none;
+    border-radius: 5px;
+    border: none;
+}
+
 .alert {
     text-align: center;
     font-weight: bold;
@@ -315,4 +339,9 @@ tbody tr:nth-child(even) {
 
 span {
     color: #ffeb3b;
+}
+
+.container-exito {
+    padding: 100px;
+    gap: 50px;
 }
