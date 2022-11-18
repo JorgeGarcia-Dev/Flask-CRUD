@@ -63,11 +63,11 @@ def destroy(id):
 @app.route('/edit/<int:id>')
 def edit(id):
     """
-    It takes the id of an employee, connects to the database, and then queries the database for the
-    employee with that id
+    Toma la identificación de un empleado, se conecta a la base de datos y luego consulta la base de datos para el
+    empleado con esa identificación.
     
-    :param id: The id of the employee to be edited
-    :return: The template edit.html is being returned.
+    :param id: El id del empleado a editar
+    :return: Se devuelve la plantilla edit.html.
     """
     
     db = connection()
@@ -84,8 +84,8 @@ def edit(id):
 @app.route('/update', methods=['POST'])
 def update():
     """
-    We're updating the database with the new values of the form
-    :return: the redirect function, which is redirecting the user to the root page.
+    Estamos actualizando la base de datos con los nuevos valores del formulario
+    :return: la función de redirección, que está redirigiendo al usuario a la página raíz.
     """
     
     _nombre=request.form['txtNombre']
@@ -127,8 +127,8 @@ def update():
 @app.route('/create')
 def create():
     """
-    It renders the create.html template
-    :return: The create.html file
+    Representa la plantilla create.html
+    :return: El archivo create.html
     """
     return render_template('empleados/create.html')
 
@@ -136,9 +136,9 @@ def create():
 @app.route('/store', methods=['POST'])
 def storage():
     """
-    It takes the form data from the form, saves the file to the uploads folder, and then inserts the
-    data into the database
-    :return: The index.html file is being returned.
+    Toma los datos del formulario, guarda el archivo en la carpeta de carga y luego inserta el
+    datos en la base de datos
+    :return: El archivo index.html está siendo devuelto.
     """
     _nombre=request.form['txtNombre']
     _correo=request.form['txtCorreo']

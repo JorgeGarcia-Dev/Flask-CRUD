@@ -7,11 +7,11 @@ import click
 # Database Connection
 def connection():
     """
-    It connects to the database and returns the connection object
-    :return: The connection to the database.
+    Se conecta a la base de datos y devuelve el objeto de conexión.
+    :return: La conexión a la base de datos.
     """
     db = pymysql.connect(
-        host = config('HOST_MYSQL'),
+        host = 'localhost',
         database = config('DB_MYSQL'),
         user = config('USER_MYSQL'),
         password = config('PASSWORD_MYSQL')
